@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-const { Builder } = require('selenium-webdriver');
+const { Builder, By, Key } = require('selenium-webdriver');
 const { expect } = require('expect');
 const chrome = require('selenium-webdriver/chrome');
+const path = require('path');
 
 describe('Selenium ChromeDriver', function () {
   let driver;
-  // The chrome and chromedriver installation can take some time. 
+  // The chrome and chromedriver installation can take some time.
   // Give 5 minutes to install everything.
   this.timeout(5 * 60 * 1000);
 
@@ -58,7 +59,16 @@ describe('Selenium ChromeDriver', function () {
     expect(title).toBe('Google');
   });
 
-  it('ISSUE REPRODUCTION', async function () {
-    // Add test reproducing the issue here.
+  it('ISSUE REPRODUCTION: Select element interaction with keys', async function () {
+    const fileUrl = 'file://' + path.resolve(__dirname, 'repro.html');
+    await driver.get(fileUrl);
+
+    const select = await driver.findElement(By.id('select_field'));
+    await select.click();
+    await select.sendKeys(Key.ARROW_DOWN, Key.ARROW_DOWN, Key.ENTER);
+
+    // assert value is 3 (Option 3)
+    const value = await select.getAttribute('value');
+    expect(value).toBe('3');
   });
 });
