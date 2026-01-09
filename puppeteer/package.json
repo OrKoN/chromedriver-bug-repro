@@ -1,0 +1,12 @@
+{
+  "name": "puppeteer-repro",
+  "version": "1.0.0",
+  "description": "A template for reproducing bugs with Puppeteer.",
+  "scripts": {
+    "test": "mocha test.js --timeout 100000"
+  },
+  "dependencies": {
+    "mocha": "^11.7.5",
+    "puppeteer": "^24.34.0"
+  }
+}

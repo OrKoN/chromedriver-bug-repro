@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <select id="select_field">
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+  <script>
+    document.getElementById('select_field').addEventListener('change', (e) => {
+      console.log('Changed to ' + e.target.value);
+    });
+  </script>
+</body>
+</html>
