@@ -1,9 +1,10 @@
 import puppeteer from 'puppeteer';
 
 async function test() {
-    console.log(`Testing with ${process.env.PUPPETEER_EXECUTABLE_PATH}`)
+    const p = process.argv[2] ?? process.env.PUPPETEER_EXECUTABLE_PATH;
+    console.log(`Testing with ${p}`)
     const browser = await puppeteer.launch({
-        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+        executablePath: p,
         dumpio: true,
         ignoreDefaultArgs: ['--disable-crash-reporter', '--disable-breakpad']
     });

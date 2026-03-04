@@ -51,3 +51,7 @@ jobs:
       with:
         name: crash-dumps
         path: ~/.config/google-chrome-for-testing/Crashpad/pending/*.dmp
+
+    - name: Bisect
+      if: always()
+      run: python3 ./bisect-builds.py --verify-range -v -cft --not-interactive --use-local-cache -g 145.0.7632.77 -b 146.0.7680.31 -c 'node test.mjs %p'
